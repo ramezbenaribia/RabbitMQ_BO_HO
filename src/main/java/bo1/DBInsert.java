@@ -1,9 +1,9 @@
-package bo;
+package bo1;
 
 import java.sql.*;
 
 public class DBInsert {
-    public String url = "jdbc:mysql://localhost:3306/bo";
+    public String url = "jdbc:mysql://localhost:3306/bo1";
     public String user="root";
     public String password = "";
     public String query = "INSERT INTO product_sale(date, region, product, qty, cost, amt, tax, total ,sent) values(?,?,?,?,?,?,?,?,0)";

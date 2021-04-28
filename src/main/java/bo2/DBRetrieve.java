@@ -1,4 +1,4 @@
-package bo;
+package bo2;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DBRetrieve {
 
-    public String url = "jdbc:mysql://localhost:3306/bo";
+    public String url = "jdbc:mysql://localhost:3306/bo2";
     public String user="root";
     public String password = "";
     public String query = "SELECT * FROM product_sale where sent=0";

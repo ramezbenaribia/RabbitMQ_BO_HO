@@ -1,4 +1,4 @@
-package bo;
+package bo1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class DBUpdate {
-    public String url = "jdbc:mysql://localhost:3306/bo";
+    public String url = "jdbc:mysql://localhost:3306/bo1";
     public String user="root";
     public String password = "";
     public String query = "UPDATE product_sale set sent = 1 where id = ?";

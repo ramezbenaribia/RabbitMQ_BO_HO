@@ -1,27 +1,30 @@
 package ho;
 
-
-
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+import javax.swing.table.DefaultTableModel;
+
 
 
 public class Table {
     JFrame f;
     public static DBRetrieve dbRetrieve;
+    private DefaultTableModel tableModel;
+    private JTable jt;
     Table() throws SQLException {
         dbRetrieve = new DBRetrieve();
         List<Product> productList = dbRetrieve.retreive();
 
 
-
         f=new JFrame("HO Database");
-
 
         List<String> columns = new ArrayList<String>();
         List<String[]> values = new ArrayList<String[]>();
@@ -51,8 +54,10 @@ public class Table {
         columns.add("Total");
 
 
-        TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
-        JTable jt=new JTable(tableModel);
+
+        tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
+        jt=new JTable(tableModel);
+
 
 
         jt.setBounds(30,40,800,800);
@@ -63,6 +68,27 @@ public class Table {
         f.setSize(800,800);
         f.setVisible(true);
     }
+     public void AddRows( List<Product> productList){
+         for(int i=0; i<productList.size(); i++) {
+             Product p = productList.get(i);
+             String[] rowData = {
+                     "" + p.getDate() + "" ,
+                     "" + p.getRegion() + "",
+                     "" + p.getProduct() + "",
+                     "" + p.getQty() + "",
+                     "" + p.getCost() + "",
+                     "" + p.getAmt() + "",
+                     "" + p.getTax() + "",
+                     "" + p.getTotal() + ""
+             } ;
+
+             tableModel.addRow(rowData);
+             jt.validate();
+         }
+
+
+    }
+
     public static void main(String[] args) throws SQLException {
         new Table();
     }}

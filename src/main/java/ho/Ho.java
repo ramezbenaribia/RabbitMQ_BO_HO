@@ -19,9 +19,13 @@ import java.util.concurrent.TimeoutException;
 
 
 public class Ho {
-    public final static String QUEUE_NAME="product";
+    public final static String QUEUE_NAME="product_sale";
+    public static Table table ;
+
 
     public static void main(String[] args) throws IOException, TimeoutException, SQLException {
+
+        table =new Table();
 
         DBInsertService dbInsertService = new DBInsertService();
 
@@ -36,18 +40,17 @@ public class Ho {
             String receivedMessage = new String(delivery.getBody(),"UTF-8");
             System.out.println("message" + receivedMessage);
             List<Product> productList = deserialize(receivedMessage);
-            System.out.println(productList);
+
+            table.AddRows(productList);
+            System.out.println("added success");
             try {
                 dbInsertService.insert(productList);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
 
             }
-            try {
-                new Table();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+
+
         };
 
 

@@ -1,4 +1,4 @@
-package bo;
+package bo2;
 
 //
 
@@ -6,7 +6,6 @@ import lombok.SneakyThrows;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
@@ -91,7 +90,7 @@ class MyFrame
     public MyFrame() throws SQLException {
 
 
-        setTitle("Registration Form");
+        setTitle("BO2 Registration Form");
         setBounds(600, 90, 1000, 700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 //        setResizable(false);
@@ -139,7 +138,7 @@ class MyFrame
         tableModel = (DefaultTableModel)jt.getModel();
 
 
-        jt.setBounds(0, 20, 500, 400);
+        jt.setBounds(0, 20, 500, 600);
         jt.setFont(new Font("Arial", Font.PLAIN, 13));
 
 
@@ -358,20 +357,33 @@ class MyFrame
 
                 );
                 System.out.println(p);
+                int p_id = productList.get(productList.size()-1).getId() +1;
                 dbInsertService = new DBInsert();
                 dbInsertService.insert(p);
 
                 resp.setText("Registration Successfully Completed ..");
 
-                tableModel.fireTableDataChanged();
-                jt.addNotify();
+                String[] rowData = {
+                        "" + p.getId() + "" ,
+                        "" + p.getDate() + "" ,
+                        "" + p.getRegion() + "",
+                        "" + p.getProduct() + "",
+                        "" + p.getQty() + "",
+                        "" + p.getCost() + "",
+                        "" + p.getAmt() + "",
+                        "" + p.getTax() + "",
+                        "" + p.getTotal() + ""
+
+                } ;
+                tableModel.addRow(rowData);
+                jt.validate();
 
 
 
 
                 productList.add(p);
                 values.add(new String[]{
-                        "" + p.getId() + "",
+                        "" + p_id + "",
                         "" + p.getDate() + "",
                         "" + p.getRegion() + "",
                         "" + p.getProduct() + "",
@@ -381,6 +393,7 @@ class MyFrame
                         "" + p.getTax() + "",
                         "" + p.getTotal() + ""
                 });
+
 
 
 

@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="tp2_distributed_systems-master" />
+        <module name="RamezBenAribia_MahdiHamdi_TP2_RabbitMQ" />
         <module name="tp2" />
       </profile>
     </annotationProcessing>
